@@ -1,0 +1,669 @@
+/* GENERAL CSS FOR THE PAGE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: greycliff-cf, sans-serif;
+  text-decoration: none;
+}
+
+/* HEADERS & TEXT STYLINGS*/
+h1 {
+  font-family: Miller display light, sans-serif;
+  font-size: 28px;
+  color: #2b2f38;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+h2 {
+  font-family: Miller display light, sans-serif;
+  font-size: 24px;
+  color: #2b2f38;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+h3 {
+  font-family: greycliff-cf, sans-serif;
+  font-size: 22px;
+  color: #78b2e8;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+h4 {
+  text-align: center;
+  font-size: 22px;
+  padding-top: 10px;
+  margin-left: -100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+p {
+  font-family: greycliff-cf, sans-serif;
+  font-size: 18px;
+  color: #2b2f38;
+  text-align: left;
+  text-transform: none; /* Makes the text not oddly capitalized*/
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* LINKS */
+/* unvisited link */
+a:link {
+  color: #2b2f38;
+}
+
+/* visited link */
+a:visited {
+  color: #2b2f38;
+}
+
+/* mouse over link */
+a:hover {
+  color: #78b2e8;
+}
+
+/* selected link */
+a:active {
+  color: #2b2f38;
+}
+
+/* RESPONSIVE MENU BAR */
+/* Source: https://youtu.be/bk3Y4heVdFs */
+header {
+  position: fixed; /* Position fixed are fixed to the viewport, whereas position absolute is with postioned with respect of the container */
+  top: 0; /* Placing the header at the most left, right and top to fill out the viewport */
+  left: 0;
+  right: 0;
+  background: #d5e5f0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 0px 7%;
+  display: flex; /* The child tags under the header will automatically align */
+  align-items: center;
+  justify-content: space-between; /* Pushes the items to the edges of the container, leaving space inbetween */
+  z-index: 1000;
+}
+
+header .logo {
+  font-family: Miller-display, serif; /* The logo/title in the top left of the menu bar */
+  font-size: 25px;
+  color: #2b2f38;
+}
+
+header .navbar ul {
+  list-style: none; /* Making the list of menupoints not have bullet points */
+}
+
+header .navbar ul li {
+  position: relative; /* Pushes the list to the left to spread out the menu points */
+  float: left;
+}
+
+header .navbar ul li a {
+  padding: 20px; /* Affecting the space between the menu points */
+  display: block; /* Makes the menu points their own block like element (unlike inline) */
+  font-size: 20px;
+  color: #2b2f38;
+}
+
+header .navbar ul li a:hover {
+  background: #2b2f38; /* when you hover over the menu points it changes colour */
+  color: #ffffff;
+}
+
+header .navbar ul li ul {
+  position: absolute; /* drop down points! */
+  left: 0;
+  top: 70px; /* Placing the dropdown boxes */
+  width: 170px;
+  background: #d5e5f0;
+  display: none; /* Hiding the points */
+}
+
+header .navbar ul li ul li {
+  width: 100%; /* Makes the dropdown menu points not stack ontop of eachother */
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Slightly tints the top of the dropdown blocks (very faint) */
+}
+
+header .navbar ul li:hover > ul {
+  display: initial; /* When you hover over the blocks it displays the default value (showing it) */
+}
+
+#menu-bar {
+  display: none; /* Hiding the 'menu-bar' */
+}
+
+header label {
+  font-size: 20px; /* Display none, hides 'menu label' when in full width */
+  color: #2b2f38;
+  cursor: pointer;
+  display: none;
+}
+
+/* The following makes the menu respondsive */
+@media (max-width: 1230px) {
+  header {
+    padding: 20px; /* When the window is less than 991px, the menu shrinks and the padding makes the menu wider */
+  }
+
+  header label {
+    display: initial; /* Shows the 'Menu' label/button in the top right */
+  }
+
+  header .navbar {
+    position: absolute;
+    top: 100%; /* Places the Menu points underneath the navigation bar */
+    left: 0;
+    right: 0;
+    background: #d5e5f0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: none; /* No display makes it not visible (you have to click on it so show it) */
+  }
+
+  header .navbar ul li {
+    width: 100%; /* Making the Menu points their full size, causing them to be placed below one another  */
+  }
+
+  header .navbar ul li ul {
+    width: 100%;
+    left: 0;
+    position: relative;
+    top: 0px; /* Makes the blocks push eachother down, instead of stacking the points ontop of eachother */
+  }
+
+  header .navbar ul li ul li {
+    width: 100%; /* Making the drop downs show up as wide as the screen */
+    background: rgb(255, 255, 255);
+  }
+
+  header .navbar ul li ul li ul {
+    position: relative;
+  }
+
+  #menu-bar:checked ~ .navbar {
+    display: initial; /* Making the Menu clickable when small width */
+  }
+}
+
+/* RESPONSIVE GRID LAYOUT */
+:root {
+  --main-radius: 5px; /* root variables can be added to other style tags to use the same radius (rounded corners and padding)*/
+  --main-padding: 5px;
+}
+
+.container {
+  display: grid; /* The grid starts here */
+  height: 100vh; /* Height the size of the viewport */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Created 5 columns of the same size (1fr)*/
+  grid-template-areas: /* The setup of the items across the grid (in the 5 columns) */
+    "image image image image image"
+    "whitespace1 box1 box2 box3 whitespace2"
+    "sidebarleft main main main sidebarright"
+    "prefooter prefooter prefooter prefooter prefooter"
+    "footer footer footer footer footer";
+}
+
+/* IMAGE BANNER */
+#image {
+  grid-area: image; /* Defines the item tag for grid-area */
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+.forsidebanner {
+  width: 1440px;
+  height: 500px;
+  padding-top: 4%;
+  padding-bottom: 2%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannercontent {
+  position: absolute;
+  top: 30%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  display: block;
+  font-size: 26px;
+}
+
+.buttonforside {
+  background: #2b2f38;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 2px;
+  cursor: pointer;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  position: absolute;
+  left: 29%;
+}
+
+.buttonbooking {
+  background: #2b2f38;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 2px;
+  cursor: pointer;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  position: absolute;
+  left: 42%;
+}
+
+.link {
+  color: #78b2e8;
+  text-decoration: underline;
+}
+
+/* 3 BOXES: KONTAKT // FIND KLINIKKEN // NY PATIENT? */
+#box1 {
+  grid-area: box1; /* Defines the item tag for grid-area */
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex; /* Centering things in grids, source: https://www.w3docs.com/snippets/css/how-to-center-the-content-in-grid.html#:~:text=One%20of%20the%20easiest%20ways,%22%20value%2C%20to%20grid%20items. */
+  align-items: center;
+  justify-content: center;
+}
+
+#box2 {
+  grid-area: box2;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#box3 {
+  grid-area: box3;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kontaktbox {
+  background-color: #ffffff; /* Styling the boxes */
+  width: 250px;
+  height: 220px;
+  border: 6px solid #d4e5f0;
+  border-radius: 40px;
+  position: relative;
+  justify-content: center; /* Moves the boxes to the middle */
+  box-shadow: 0px 5px 10px rgba(64, 64, 64, 0.2);
+}
+
+.contentkontaktbox {
+  position: absolute; /* Absolute meaning content inside box stays the same, relative changes based on outside surroundings!! */
+  left: 50%; /* Centers the content inside the box */
+}
+
+.imageicons {
+  width: 30px; /* Sizes and places the image icons inside the box */
+  margin-left: -10px;
+  margin-top: 30px;
+}
+
+.textkontaktbox2 {
+  margin-left: -64%; /* Pushes the text to the middle of the boxes */
+  overflow-wrap: break-word; /* Breaks up the words, and makes a new line */
+  width: 130%;
+  font-size: 16px;
+  text-transform: none;
+  text-align: center;
+}
+
+.boxes {
+  list-style: none; /* To avoid bullet points (as the boxes are set up as a list) */
+}
+
+.boxes li {
+  float: left; /* The boxes start from the left side and continue horizontially */
+  padding: 20px;
+}
+
+#whitespace1 {
+  grid-area: whitespace1;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+#whitespace2 {
+  grid-area: whitespace2;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+/* MAIN BODY OF TEXT*/
+main {
+  background: white;
+  grid-area: main;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+/* LEFT SIDEBAR */
+#sidebarleft {
+  background: rgb(255, 255, 255);
+  grid-area: sidebarleft;
+  padding-top: 45%;
+}
+
+/* ÅBENINGSTIDER TABLE */
+.åbeningstider {
+  text-align: center;
+  padding-left: 50px;
+  font-size: 26px;
+  font-family: Miller display light, sans-serif;
+}
+
+.phonenumber {
+  text-align: center;
+  padding-left: 50px;
+}
+
+.table1 table {
+  position: relative;
+  z-index: 1;
+  width: 100px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0px 2px 15px rgba(64, 64, 64, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  left: 10px;
+  width: 10%;
+  float: right;
+}
+
+.table1 td,
+th {
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.table1 th {
+  background-color: #d5e5f0;
+  color: #2b2f38;
+  font-family: greycliff-cf, Sans-serif;
+  font-weight: 100;
+}
+
+.table1 tr {
+  background-color: #fafafa;
+  font-family: greycliff-cf, sans-serif;
+  font-size: 14px;
+}
+
+.table1 tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+/* RIGHT SIDEBAR */
+#sidebarright {
+  grid-area: sidebarright;
+  /* Centers the links table in mobile mode */
+  padding-top: 50%;
+}
+
+/* LINKS BOX */
+.bglink {
+  background-color: #f5f5f5;
+  padding-top: 5%; /* Makes a little space from between the title and the top of the box*/
+  padding-bottom: 5%;
+  padding-right: 10px;
+  width: 250px; /* Keeps the links table from collasping in on itself */
+  box-shadow: 0px 2px 15px rgba(64, 64, 64, 0.2); /* Creates a subtle shadow */
+  border-radius: 10px 10px 10px 10px; /* Slightly rounds the corners by 10px */
+}
+
+.linktable {
+  text-decoration: underline; /*makes the links underlined and be center*/
+  margin-left: 15%; /* Pushes the text from the left to center it more in the box */
+  color: #78b2e8;
+  line-height: 35px; /* Increases the line spacing */
+}
+
+.bgadresse {
+  background-color: #f5f5f5;
+  padding-top: 5%; /* Makes a little space from between the title and the top of the box*/
+  padding-bottom: 5%;
+  padding-right: 10px;
+  width: 250px; /* Keeps the links table from collasping in on itself */
+  box-shadow: 0px 2px 15px rgba(64, 64, 64, 0.2); /* Creates a subtle shadow */
+  border-radius: 10px 10px 10px 10px; /* Slightly rounds the corners by 10px */
+}
+
+.adressetable {
+  text-decoration: none; /*makes the links underlined and be center*/
+  margin-left: 15%; /* Pushes the text from the left to center it more in the box */
+  color: #738393;
+  line-height: 35px; /* Increases the line spacing */
+}
+
+.adressetable ul li {
+  list-style: none; /* Removes the bullet points */
+}
+
+/* PREFOOTER */
+#prefooter {
+  background: #eaeaea;
+  grid-area: prefooter;
+  border-radius: var(--main-radius);
+  padding-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#prefooter ul li {
+  float: left;
+  list-style: none; /* Gets rid of bullet points*/
+  font-size: 14px;
+  padding-right: 8%; /* Spaces them apart*/
+  padding-left: 100px; /* Spaces them apart*/
+}
+
+.prefooterbold {
+  font-family: Greycliff-cf;
+  font-weight: bolder;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.buttonprefooter {
+  background: #f5f5f5;
+  border: solid 5px #c5e0f3;
+  color: #2b2f38;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 2px;
+  cursor: pointer;
+  border-radius: 40px;
+  display: block;
+  position: relative;
+  left: -5%;
+  margin-top: -14%;
+}
+
+/* FOOTER */
+footer {
+  background: #d5e5f0;
+  grid-area: footer;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 1%;
+}
+
+/* FITTING THE GRID TO FIT SMALLER SCREEN */
+@media only screen and (max-width: 1230px) {
+  .container {
+    width: 100%;
+    padding-top: 90px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.8fr 0.4fr 0.4fr;
+    grid-template-areas:
+      "sidebarleft"
+      "main"
+      "sidebarright"
+      "prefooter"
+      "footer";
+  }
+
+  #image {
+    display: none; /*Hides the other grid blocks when slimmer screen */
+  }
+
+  #box1 {
+    display: none;
+  }
+
+  #box2 {
+    display: none;
+  }
+
+  #box3 {
+    display: none;
+  }
+
+  #prefooter .buttonforside {
+    display: none;
+  }
+
+  .bglink {
+    min-width: 340px; /* Makes the links table not become thin when the viewport changes */
+  }
+
+  #sidebarright {
+    display: grid; /* Centers the links table in mobile mode */
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 40px; /* Creates a space between the table and the prefooter */
+    padding-top: 0%;
+  }
+
+  .linktable {
+    align-items: initial;
+  }
+
+  #sidebarleft {
+    display: grid; /* Centers the åbeningstider table in mobile mode */
+    justify-content: center;
+    align-content: center;
+    padding-top: 5%;
+  }
+
+  table {
+    width: 400px; /* Makes the table wider than viewport is smaller*/
+  }
+}
+
+/* PERSONALE PAGE EXTRA CSS */
+.personaleimages {
+  padding-left: 8.5%;
+}
+
+.personaleimages ul li img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.personaleimages ul li {
+  float: left;
+  padding: 3%;
+  list-style: none;
+  align-items: center;
+  position: relative;
+  /* padding-left: 7%; */
+  margin-left: 2%;
+}
+
+li .personaletext {
+  font-size: 13px;
+  width: 170px;
+  text-align: left;
+  /* padding-right: 7%; */
+}
+
+.centeringnurses {
+  width: 81.5vh;
+}
+
+.personaleheader {
+  font-size: 20px;
+  text-align: center;
+}
+
+/* VACCINATION PAGE EXTRA CSS */
+.vaccinationtable {
+  padding-bottom: 60%;
+}
+
+.vaccinationtable table {
+  position: relative;
+  z-index: 1;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0px 2px 15px rgba(64, 64, 64, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  left: 7%;
+  width: 85%;
+  float: left;
+}
+
+.vaccinationtable td,
+th {
+  padding: 10px 10px;
+  text-align: left;
+}
+
+.vaccinationtable th {
+  background-color: #dfdfdf;
+  color: #2b2f38;
+  font-family: greycliff-cf, Sans-serif;
+}
+
+.vaccinationtable tr {
+  background-color: #fafafa;
+  font-family: greycliff-cf, sans-serif;
+  font-size: 13px;
+}
+
+.vaccinationtable tr:nth-child(even) {
+  background-color: #eeeeee;
+}
